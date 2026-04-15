@@ -232,6 +232,8 @@ Durante el diseño y posterior revisión del xlsx se detectaron inconsistencias.
 | SKILL-31-P1 (Diego) | Faltaba en Orden de Ejecución (gap entre #21 y #23) | Insertado en posición #22 |
 | SKILL-25B-P1 (Diego) | Faltaba en Orden de Ejecución (gap entre #34 y #36) | Insertado en posición #24 |
 | SKILL-05B-P1, SKILL-05C-P1 (Rodolfo) | Faltaban en Orden de Ejecución de Rodolfo | Insertados en posiciones #11 y #12 |
+| SKILL-02-P1 Orden de Ejecución (Diego) | Pestaña 'Orden de Ejecución' decía 'Abrir KB RetailApp-Diego' — KB que nunca fue creada hasta ese punto | Corregido a 'CREAR KB RetailApp en C:\KBs\RetailApp para .NET' (la columna de Hallazgos del bloque ya estaba bien) |
+| SKILL-23-P1 setup (Rodolfo) | Setup decía 'Crear Transaction Order' pero Order ya fue creada en el setup de SKILL-09 (#4) | Cambiado a 'Transaction Order ya existe del setup de SKILL-09. Verificar Domain OrderStatus y BC habilitado' |
 
 ---
 
@@ -247,7 +249,7 @@ Durante el diseño y posterior revisión del xlsx se detectaron inconsistencias.
 
 **Antes de SKILL-35A-P1** (#18): verificar que Invoice tiene `CustomerId FK` (del setup SKILL-22). Crear SDT `ReportLine` con `CustomerId (Attribute:)`, `CustomerName (Attribute:)`, `InvoiceDate Date`, `InvoiceTotal Numeric(10.2)`.
 
-**Antes de SKILL-23-P1** (#20): Transaction `Order` debe usar Domain `OrderStatus` (del SKILL-06). Habilitar BC en Order. **Importante**: usar `OrderStatus.Confirmed` en el prompt, NO `OrderStatusType.Confirmed`.
+**Antes de SKILL-23-P1** (#20): Transaction `Order` ya existe del setup de SKILL-09 (#4). Verificar que usa Domain `OrderStatus` (creado en SKILL-06 #3) — si no, actualizar. Habilitar BC en Order si no está habilitado. **Importante**: usar `OrderStatus.Confirmed` en el prompt, NO `OrderStatusType.Confirmed`.
 
 **Antes de SKILL-25-P1** (#21): habilitar BC en Transaction Customer.
 
@@ -390,6 +392,6 @@ Los siguientes archivos MD tienen cobertura parcial o ninguna y podrían merecer
 
 ---
 
-*Última actualización: revisión post-ejecución inicial — correcciones de inconsistencias de dependencias, prompts vacíos y números de orden.*
+*Última actualización: revisión completa con trazado de estado de KB por persona — corrección de 'Abrir KB' → 'Crear KB' en Orden de Ejecución SKILL-02-P1 y setup SKILL-23-P1.*
 *63 casos · 4 bloques · Rodolfo 27 casos · Diego 36 casos.*
 *Artefacto principal: `GeneXus_for_Agents_Plan_de_Pruebas.xlsx`*
