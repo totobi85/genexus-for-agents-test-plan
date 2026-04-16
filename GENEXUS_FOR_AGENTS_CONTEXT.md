@@ -291,7 +291,7 @@ El archivo tiene **7 pestañas**:
 6. **Bloque 4** — 16 casos.
 7. **Issues** — registro de problemas detectados durante la ejecución.
 
-### Columnas por hoja de bloque (16 columnas)
+### Columnas por hoja de bloque (17 columnas)
 
 | Col | Nombre | Fondo | Tipo |
 |---|---|---|---|
@@ -301,16 +301,22 @@ El archivo tiene **7 pestañas**:
 | 4 | Estado | Amarillo/verde/rojo (dropdown) | Tracking |
 | 5 | Fecha | Blanco | Tracking |
 | 6 | ⚠ Hallazgos pre-prueba | Crema | Referencia (del MD) |
-| 7 | 📋 Prompt — copiar en CODA-CLI | Azul claro (Courier New) | Referencia |
-| 8 | ✅ Resultado esperado | Verde claro | Referencia (del MD) |
-| 9 | 🔍 Puntos clave a verificar | Verde claro | Referencia (del MD) |
-| 10 | ❌ Señal de fallo | Salmón | Referencia (del MD) |
-| 11 | Resultado obtenido | Blanco | Tracking |
-| 12 | Prioridad hallazgo | Blanco (dropdown) | Tracking |
-| 13 | Descripción del problema | Blanco | Tracking |
-| 14 | Propuesta de corrección | Blanco | Tracking |
-| 15 | Skill a corregir (.md) | Blanco | Tracking |
-| 16 | 🗣 Prompt alternativo (lenguaje natural) | Lavanda | Referencia |
+| 7 | 📋 Prompt técnico — copiar en CODA-CLI | Azul claro (Courier New) | Referencia |
+| 8 | 🧩 Prompt funcional — qué debe hacer el sistema | Violeta claro | Referencia |
+| 9 | ✅ Resultado esperado | Verde claro | Referencia (del MD) |
+| 10 | 🔍 Puntos clave a verificar | Verde claro | Referencia (del MD) |
+| 11 | ❌ Señal de fallo | Salmón | Referencia (del MD) |
+| 12 | Resultado obtenido | Blanco | Tracking |
+| 13 | Prioridad hallazgo | Blanco (dropdown) | Tracking |
+| 14 | Descripción del problema | Blanco | Tracking |
+| 15 | Propuesta de corrección | Blanco | Tracking |
+| 16 | Skill a corregir (.md) | Blanco | Tracking |
+| 17 | 🗣 Prompt alternativo (lenguaje natural) | Lavanda | Referencia |
+
+**Tres capas de prompt por caso:**
+1. **Col 7 — Técnico**: prompt con sintaxis GeneXus exacta, listo para copiar en CODA-CLI.
+2. **Col 8 — Funcional**: describe qué debe hacer el sistema en lenguaje de producto, sin terminología GeneXus pero manteniendo los pasos numerados. Permite probar si el agente infiere correctamente el modelo técnico a partir de un requerimiento funcional.
+3. **Col 17 — Alternativo**: una sola frase de negocio muy vaga, para una tercera pasada aún más abierta. Los casos MCP y SKILL-39 muestran `— (operación técnica de infraestructura)` en cols 8 y 17.
 
 ---
 
@@ -321,7 +327,7 @@ El archivo tiene **7 pestañas**:
 1. Ir a la hoja del bloque correspondiente y buscar el caso asignado.
 2. Cambiar **Estado** a `En curso` (para que el otro sepa que está tomado).
 3. Verificar si hay **🔧 SETUP PREVIO** en la columna de Hallazgos. Si hay, ejecutarlo primero.
-4. Copiar el **📋 Prompt** de la columna 7 y pegarlo en CODA-CLI.
+4. Copiar el prompt de la columna 7 (técnico) o columna 8 (funcional) según el tipo de prueba que se quiera hacer, y pegarlo en CODA-CLI.
 5. Para casos con prompts en pasos numerados: ejecutar cada paso en la misma sesión de CODA-CLI.
 6. Comparar el output del agente con el **✅ Resultado esperado** (columna 8) y los **🔍 Puntos clave** (columna 9).
 7. Verificar que no aparece ninguna **❌ Señal de fallo** (columna 10).
@@ -392,6 +398,6 @@ Los siguientes archivos MD tienen cobertura parcial o ninguna y podrían merecer
 
 ---
 
-*Última actualización: revisión completa con trazado de estado de KB por persona — corrección de 'Abrir KB' → 'Crear KB' en Orden de Ejecución SKILL-02-P1 y setup SKILL-23-P1.*
+*Última actualización: agregada columna 8 'Prompt funcional' — 63 versiones funcionales de los prompts que describen qué debe hacer el sistema sin terminología GeneXus.*
 *63 casos · 4 bloques · Rodolfo 27 casos · Diego 36 casos.*
 *Artefacto principal: `GeneXus_for_Agents_Plan_de_Pruebas.xlsx`*
